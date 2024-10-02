@@ -4,7 +4,11 @@ namespace Ch04Ex1MovieList.Models
 {
     public class Movie
     {
-        // EF Core will configure the database to generate this value public int MovieId { get; set; }
+
+        // EF Core will configure the database to generate this value
+        public int MovieId { get; set; }
+
+
         [Required(ErrorMessage = "Please enter a name.")] 
         public string Name { get; set; } = string.Empty;
 
