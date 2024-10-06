@@ -14,6 +14,11 @@ builder.Services.AddDbContext<MovieContext>(options => options.UseSqlServer(
 builder.Configuration.GetConnectionString("MovieContext")));
 var app = builder.Build();
 
+
+builder.Services.AddRouting(options => {
+    options.LowercaseUrls = true; options.AppendTrailingSlash = true;
+});
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

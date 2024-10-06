@@ -1,22 +1,26 @@
 ﻿using Ch04Ex1MovieList.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Ch04Ex1MovieList.Controllers
 {
     public class MovieController : Controller
     {
         private MovieContext context { get; set; }
-        public MovieController(MovieContext ctx) => context = ctx; [HttpGet]
+        public MovieController(MovieContext ctx) => context = ctx;
+        [HttpGet]
         public IActionResult Add()
         {
-            ViewBag.Action = "Add"; return View("Edit", new Movie());
+            ViewBag.Action = "Add";
+            ViewBag.Genres = context.Genres.OrderBy(g => g.Name).ToList(); return View("Edit", new Movie());
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            ViewBag.Action = "Edit"; var movie = context.Movies.Find(id); return View(movie);
+            ViewBag.Action = "Edit";
+            ViewBag.Genres = context.Genres.OrderBy(g => g.Name).ToList(); var movie = context.Movies.Find(id); return View(movie);
         }
+
         [HttpPost]
         public IActionResult Edit(Movie movie)
         {
@@ -29,7 +33,9 @@ namespace Ch04Ex1MovieList.Controllers
             }
             else
             {
-                ViewBag.Action = (movie.MovieId == 0) ? "Add" : "Edit"; return View(movie);
+                ViewBag.Action = (movie.MovieId == 0) ? "Add" : "Edit";
+                ViewBag.Genres = context.Genres.OrderBy(g => g.Name).ToList();
+                return View(movie);
             }
         }
         [HttpGet]
