@@ -1,5 +1,6 @@
 ﻿using Ch04Ex1MovieList.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ch04Ex1MovieList.Controllers
 {
