@@ -31,5 +31,8 @@ namespace Ch04Ex1MovieList.Models
         public Genre Genre { get; set; } = null!;
 
 
+        public string Slug =>
+        Name?.Replace(' ', '-').ToLower() + '-' + Year?.ToString();
+
     }
 }
